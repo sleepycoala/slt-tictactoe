@@ -23,7 +23,8 @@ public class TicTacToe {
     }
 
     public boolean hasWinner() {
-        // Will be fully implemented in US-03; defaults to false for US-01
+        // Will be fully implemented in  user story 3
+        // defaults to false for now
         return false;
     }
 

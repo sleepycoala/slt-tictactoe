@@ -50,7 +50,7 @@ public class Board {
         System.out.println("▔▔▔▔");
     }
 
-    // package-private helper getter for unit testing assertions
+    // helper getter for unit testing assertions
     char[][] getCells() {
         return cells;
     }
