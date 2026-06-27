@@ -29,11 +29,11 @@ public class TicTacToeTest {
         board.place(1, 1, 'X');
         board.print();
 
-        String expected = "▁▁▁▁▁▁" + System.lineSeparator() +
+        String expected = "-------" + System.lineSeparator() +
                           "| | | |" + System.lineSeparator() +
                           "| |X| |" + System.lineSeparator() +
                           "| | | |" + System.lineSeparator() +
-                          "▔▔▔▔" + System.lineSeparator();
+                          "-------" + System.lineSeparator();
 
         assertEquals(expected, outContent.toString(), 
             "The board UI should print the exact grid framework with markers.");
