@@ -24,8 +24,7 @@ public class TicTacToe {
 
         while (gameInProgress) {
 
-            System.out.println("\nCurrent Player: " + currentPlayer.getMarker());
-            board.print();
+            displayGameState();
 
             System.out.print("row (0-2): ");
             int row = scanner.nextInt();
@@ -64,7 +63,10 @@ public class TicTacToe {
         scanner.close();
     }
 
-
+    public void displayGameState() {
+        System.out.println("\nCurrent Player: " + currentPlayer.getMarker());
+        board.print();
+    }
 
 
     public void switchCurrentPlayer() {
