@@ -8,6 +8,7 @@ public class TicTacToe {
     private final Player player2;
     private Player currentPlayer;
     private final Board board;
+    private boolean gameInProgress;
 
     public TicTacToe() {
         this.player1 = new Player('X');
@@ -18,37 +19,14 @@ public class TicTacToe {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        boolean gameInProgress = true;
+        gameInProgress = true;
 
         System.out.println("Welcome to TicTacToe!");
 
         while (gameInProgress) {
 
-            System.out.println("\nCurrent Player: " + currentPlayer.getMarker());
-            board.print();
-
-            System.out.print("row (0-2): ");
-            int row = scanner.nextInt();
-            System.out.print("column (0-2): ");
-            int col = scanner.nextInt();
-
-            if (board.isCellEmpty(row, col)) {
-                board.place(row, col, currentPlayer.getMarker());
-
-                if (hasWinner()) {
-                    board.print();
-                    System.out.println("Game Over! The winner is: " + currentPlayer.getMarker());
-                    gameInProgress = false;
-                } else if (board.isFull()) {
-                    board.print();
-                    System.out.println(" Game Over! It is a draw");
-                    gameInProgress = false;
-                } else {
-                    switchCurrentPlayer();
-                }
-            } else {
-                System.out.println("That cell is already taken! Try again.");
-            }
+            displayGameState();
+            processTurn(scanner);
         }
 
         System.out.print("Do you want to play again? (yes/no): ");
@@ -64,7 +42,38 @@ public class TicTacToe {
         scanner.close();
     }
 
+    public void displayGameState() {
+        System.out.println("\nCurrent Player: " + currentPlayer.getMarker());
+        board.print();
+    }
 
+    private void processTurn(Scanner scanner) {
+        System.out.print("row (0-2): ");
+        int row = scanner.nextInt();
+        System.out.print("column (0-2): ");
+        int col = scanner.nextInt();
+
+        if (board.isCellEmpty(row, col)) {
+            board.place(row, col, currentPlayer.getMarker());
+            checkGameEndConditions();                
+        } else {
+            System.out.println("That cell is already taken! Try again.");
+        }
+    }
+
+    private void checkGameEndConditions() {
+        if (hasWinner()) {
+            board.print();
+            System.out.println("Game Over! The winner is: " + currentPlayer.getMarker());
+            gameInProgress = false;
+        } else if (board.isFull()) {
+            board.print();
+            System.out.println(" Game Over! It is a draw");
+            gameInProgress = false;
+        } else {
+            switchCurrentPlayer();
+        }
+    }
 
 
     public void switchCurrentPlayer() {
@@ -77,12 +86,12 @@ public class TicTacToe {
 
 //        rows
         for (int i = 0; i < 3; i++){
-            if (cells[i][0] == m && cells[i][1] == m & cells[i][2] == m) return true;
+            if (cells[i][0] == m && cells[i][1] == m && cells[i][2] == m) return true;
         }
 
 //        columns
         for (int i = 0; i < 3; i++){
-            if (cells[0][i] == m && cells[1][i] == m & cells[2][i] == m) return true;
+            if (cells[0][i] == m && cells[1][i] == m && cells[2][i] == m) return true;
         }
 
 //        diagonal
