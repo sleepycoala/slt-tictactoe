@@ -1,13 +1,8 @@
 package tictactoe;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -83,5 +78,62 @@ public class TicTacToeTest {
             "Out of bounds lower limits should safely return false.");
         assertFalse(board.isCellEmpty(3, 3), 
             "Out of bounds upper limits should safely return false.");
+    }
+
+    @Test
+    public void testHasWinnerPositive() {
+        TicTacToe game = new TicTacToe();
+
+        game.getBoard().place(0, 0, 'X');
+        game.getBoard().place(0, 1, 'X');
+        game.getBoard().place(0, 2, 'X');
+
+        assertTrue(game.hasWinner(), 
+            "Positive Test Failed: X should have won with 3 in a row.");
+    }
+
+    @Test
+    public void testHasWinnerNegative() {
+        TicTacToe game = new TicTacToe();
+
+        game.getBoard().place(0, 0, 'X');
+        game.getBoard().place(0, 1, 'O');
+        game.getBoard().place(0, 2, 'X');
+
+        assertFalse(game.hasWinner(), "Negative Test Failed: Mixed row should not trigger a win.");
+    }
+
+    @Test
+    public void testStartInitializesGamePositive() {
+        TicTacToe game = new TicTacToe();
+
+        assertNotNull(game.getBoard(), "Positive Test Failed: Board should be accessible via getter.");
+    }
+
+    @Test
+    public void testStartGameOverFlagNegative() {
+        TicTacToe game = new TicTacToe();
+
+        assertFalse(game.hasWinner(), "Negative Test Failed: A newly started game should not instantly have a winner.");
+    }
+
+    @Test
+    public void testClearPositive() {
+        Board board = new Board();
+        board.place(1, 1, 'O'); // Put a marker down
+
+        board.clear();
+
+        char[][] cells = board.getCells();
+        assertEquals(' ', cells[1][1], "Positive Test Failed: clear() did not empty the cell.");
+    }
+
+    @Test
+    public void testClearNegative() {
+        Board board = new Board();
+        board.clear();
+
+        assertFalse(board.isFull(), 
+            "Negative Test Failed: Clearing an empty board shouldn't break it or mark it full.");
     }
 }
