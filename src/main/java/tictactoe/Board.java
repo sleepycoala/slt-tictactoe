@@ -52,6 +52,7 @@ public class Board {
 
     // helper getter for unit testing assertions
     char[][] getCells() {
+
         return cells;
     }
 }
