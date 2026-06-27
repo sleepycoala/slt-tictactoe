@@ -77,12 +77,12 @@ public class TicTacToe {
 
 //        rows
         for (int i = 0; i < 3; i++){
-            if (cells[i][0] == m && cells[i][1] == m & cells[i][2] == m) return true;
+            if (cells[i][0] == m && cells[i][1] == m && cells[i][2] == m) return true;
         }
 
 //        columns
         for (int i = 0; i < 3; i++){
-            if (cells[0][i] == m && cells[1][i] == m & cells[2][i] == m) return true;
+            if (cells[0][i] == m && cells[1][i] == m && cells[2][i] == m) return true;
         }
 
 //        diagonal
