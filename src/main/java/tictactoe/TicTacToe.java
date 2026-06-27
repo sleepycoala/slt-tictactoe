@@ -50,8 +50,21 @@ public class TicTacToe {
                 System.out.println("That cell is already taken! Try again.");
             }
         }
+
+        System.out.print("Do you want to play again? (yes/no): ");
+        String response = scanner.next();
+
+        if (response.equalsIgnoreCase("yes")){
+            board.clear();
+            this.start();
+        } else {
+            System.out.println("Thank you for playing TiTacToe with us! Goodbye.");
+            return;
+        }
         scanner.close();
     }
+
+
 
 
     public void switchCurrentPlayer() {
@@ -79,6 +92,7 @@ public class TicTacToe {
 
         return false;
     }
+
 
     // Getters to assist unit testing
     public Board getBoard() { 
