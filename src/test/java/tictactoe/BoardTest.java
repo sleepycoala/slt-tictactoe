@@ -49,11 +49,11 @@ public class BoardTest {
         board.place(1, 1, 'X');
         board.print();
 
-        String expected = "▁▁▁▁▁▁" + System.lineSeparator() +
+        String expected = "-------" + System.lineSeparator() +
                           "| | | |" + System.lineSeparator() +
                           "| |X| |" + System.lineSeparator() +
                           "| | | |" + System.lineSeparator() +
-                          "▔▔▔▔" + System.lineSeparator();
+                          "-------" + System.lineSeparator();
 
         assertEquals(expected, outContent.toString());
         System.setOut(System.out); // Reset standard output stream
