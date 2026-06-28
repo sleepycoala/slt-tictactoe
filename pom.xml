@@ -70,7 +70,7 @@
                 <archive>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>App</mainClass>
+                        <mainClass>tictactoe.App</mainClass>
                     </manifest>
                 </archive>
             </configuration>
